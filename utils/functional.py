@@ -136,7 +136,7 @@ def img2video(expdir, epoch, audio_path=None):
         # cmd = f"ffmpeg -r 60 -i {image_dir}/{dance}/%05d.png -vb 20M -vcodec qtrle -y {video_dir}/{name}.mov -loglevel quiet"
 
         os.system(cmd)
-        
+       
         name1 = name.replace('cAll', 'c02')
 
         if 'cAll' in name:
@@ -145,7 +145,7 @@ def img2video(expdir, epoch, audio_path=None):
             music_name = name + '.mp3'
             audio_dir = 'extra/'
             music_names = sorted(os.listdir(audio_dir))
-        
+        print(music_name)
         if music_name in music_names:
             print('combining audio!')
             audio_dir_ = os.path.join(audio_dir, music_name)
@@ -153,7 +153,7 @@ def img2video(expdir, epoch, audio_path=None):
             name_w_audio = name + "_audio"
             cmd_audio = f"ffmpeg -i {video_dir}/{name}.mp4 -i {audio_dir_} -map 0:v -map 1:a -c:v copy -shortest -y {video_dir}/{name_w_audio}.mp4 -loglevel quiet"
             os.system(cmd_audio)
-
+            print(music_name)
 
 
 def visualize_json(fname_iter, image_dir, dance_name, dance_path, config, quant=None):
@@ -163,7 +163,7 @@ def visualize_json(fname_iter, image_dir, dance_name, dance_path, config, quant=
                                          remove_face_labels=False, basic_point_only=False))
     img = img.transpose(Image.FLIP_TOP_BOTTOM)
     img = np.asarray(img)
-    if quant is not None:
+    if False:
         cv2.putText(img, str(quant[j]), (config.width-400, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 3)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
     # img[np.all(img == [0, 0, 0, 255], axis=2)] = [255, 255, 255, 0]

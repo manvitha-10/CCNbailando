@@ -6,4 +6,4 @@ class VSConfig():
     width = 960
 config = VSConfig()
 
-visualizeAndWritefromPKL('/mnt/lustre/syli/dance/Bailando/experiments/actor_critic_for_demo/vis/pkl/ep000015', config)
+visualizeAndWritefromPKL('experiments/sep_vqvae/eval/pkl/ep000500/', config)
